@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::get('news/create', 'App\Http\Controllers\Admin\NewsController@add');
+    Route::post('news/create', 'App\Http\Controllers\Admin\NewsController@create');
+});
